@@ -1,0 +1,21 @@
+---
+  - name: service check
+    hosts: Devnode
+    gather_facts: true
+    become: no
+    tasks:
+        - name: cheking service status
+          ansible.builtin.service:
+             name: avahi-daemon.service
+             state: started
+          register: output
+
+        - name: Display tyhe status of service
+          debug:
+             msg: "{{ output }}"
+          
+        - name: copying result in control node
+          local_action:
+            module: copy
+            content: "{{ output }}"
+            dest: "/home/vaidhi/Documents/Playbooks/Dev01/result/servicecheck.txt"
