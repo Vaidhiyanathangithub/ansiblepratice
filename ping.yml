@@ -1,0 +1,11 @@
+---
+  - name: ping
+    hosts: windows
+    gather_facts: false
+    ignore_errors: true
+    tasks:
+     - name: Ping Windows host
+       win_ping:
+
+      
+          

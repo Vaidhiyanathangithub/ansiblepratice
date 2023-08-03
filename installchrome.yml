@@ -1,0 +1,23 @@
+---
+- name: Install Google Chrome
+  hosts: Devnode
+  become: yes
+  tasks:
+    - name: Import Google Chrome GPG key
+      rpm_key:
+        key: "https://dl.google.com/linux/linux_signing_key.pub"
+        state: present
+
+    - name: Add Google Chrome repository
+      yum_repository:
+        name: google-chrome
+        description: Google Chrome
+        baseurl: "https://dl.google.com/linux/chrome/rpm/stable/x86_64"
+        enabled: yes
+        gpgcheck: yes
+        gpgkey: "https://dl.google.com/linux/linux_signing_key.pub"
+
+    - name: Install Google Chrome
+      yum:
+        name: google-chrome-stable
+        state: latest

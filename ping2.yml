@@ -1,0 +1,15 @@
+---
+- name: Ping Linux hosts
+  hosts: Devnode
+  become: false
+  gather_facts: true
+  tasks:
+    - name: Ping
+      ping:
+      register: op
+    - name: displaying result
+      debug:
+        msg: "{{ op }}"
+    - name: hostname of manged node
+      debug:
+        msg: "{{ ansible_hostname }}"

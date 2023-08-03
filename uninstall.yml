@@ -1,0 +1,10 @@
+---
+  -  name: uninstall chrome
+     hosts: Devnode
+     become: yes
+     tasks:
+       - name: uninstalling
+         yum:
+           name:
+            - google-chrome-stable.x86_64
+           state: absent   
